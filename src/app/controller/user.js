@@ -86,7 +86,8 @@ module.exports = {
         isOrganization: user.isOrganization,
         profile: user.profile,
         fullName: user.fullName,
-        identity
+        identity,
+        verified: user.verified,
       });
     })(req, res);
   },
