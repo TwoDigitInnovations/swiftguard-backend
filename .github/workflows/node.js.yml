@@ -28,8 +28,4 @@ jobs:
        echo "${{secrets.PROD_ENV_FILE}}" > .env
     - run: npm install -g serverless@3.22.0
     - run: |
-        current_dir=$(pwd)
-        cd /home/ubuntu/actions-runner-backend/_work/swiftguard-backend/swiftguard-backend/node_modules/serverless
-        npm install simple-git@3.22.0
-        cd "$current_dir"
            npm run restart
