@@ -203,8 +203,6 @@ module.exports = {
       let job_id = req.params["job_id"];
       // await Job.deleteOne({ _id: job_id });
       let job = await Job.findById(job_id);
-
-
       let newd = await Invoice.find({
         "jobDetails.id": mongoose.Types.ObjectId(job_id),
       })
