@@ -235,7 +235,8 @@ module.exports = {
         // );
 
       }
-      await job.remove();
+      // await job.remove();
+      await Job.findByIdAndDelete(job_id)
       for (let i = 0; i < job.applicant.length; i++) {
         await notification.notify({
           to: job.applicant[i],
