@@ -204,7 +204,7 @@ module.exports = {
       // await Job.deleteOne({ _id: job_id });
       let job = await Job.findById(job_id);
       let newd = await Invoice.find({
-        "jobDetails.id": mongoose.Types.ObjectId(job_id),
+        "jobDetails.id": new mongoose.Types.ObjectId(job_id),
       })
       // .populate("client")
       // .lean();
@@ -937,7 +937,7 @@ module.exports = {
       let jobInvite;
       if (n_p) {
         const cond = { job: req.params["job_id"], invited: req.user.id };
-        if (n_id) cond._id = mongoose.Types.ObjectId(n_id);
+        if (n_id) cond._id = new mongoose.Types.ObjectId(n_id);
         jobInvite = await JobInvite.findOne(cond);
         if (jobInvite.job_status !== "ACTIVE") {
           return response.ok(res, {

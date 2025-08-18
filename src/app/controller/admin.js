@@ -540,7 +540,7 @@ module.exports = {
     try {
       const org = req.params["org_id"];
       let view = req.params["view"];
-      const obj = { $match: { organization: mongoose.Types.ObjectId(org) } };
+      const obj = { $match: { organization: new mongoose.Types.ObjectId(org) } };
 
       if (view == "MONTHLY") {
       }
@@ -1016,7 +1016,7 @@ module.exports = {
 
   gaurdJobHistory: async (req, res) => {
     try {
-      const gaurd = mongoose.Types.ObjectId(req.params["gaurd"]);
+      const gaurd = new mongoose.Types.ObjectId(req.params["gaurd"]);
       const startDate = new Date(req.query["startDate"]);
       const endDate = new Date(req.query["endDate"]);
 
@@ -1093,7 +1093,7 @@ module.exports = {
 
   deleteEvent: async (req, res) => {
     try {
-      await Festa.findByIdAndDelete(mongoose.Types.ObjectId(req.body.id));
+      await Festa.findByIdAndDelete(new mongoose.Types.ObjectId(req.body.id));
       return response.ok(res, { message: "Event deleted successfully" });
     } catch (error) {
       return response.error(res, error);
