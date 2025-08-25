@@ -963,7 +963,7 @@ module.exports = {
           $gte: startDate,
           $lt: new Date(endDate.setDate(endDate.getDate() + 1)),
         },
-      }).populate("applicant", "_id username fullName commission");
+      }).populate("applicant", "_id username fullName commission payroll");
 
       const gaurds = {};
 
