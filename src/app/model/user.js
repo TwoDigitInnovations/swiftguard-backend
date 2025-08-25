@@ -75,8 +75,8 @@ const userSchema = new mongoose.Schema({
     isOrganization: {
         type: Boolean
     },
-    payroll:{
-        type:Object
+    payroll: {
+        type: Object,
     },
     organization: {
         type: String

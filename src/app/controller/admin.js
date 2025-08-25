@@ -1000,7 +1000,7 @@ module.exports = {
             };
           }
           gaurds[a.username]._id = a._id;
-          gaurds[a.username].payroll = a?.payroll?.type || 'weekly'
+          gaurds[a.username].payroll = a?.payroll?.type || 'N/A'
         }
       }
 
