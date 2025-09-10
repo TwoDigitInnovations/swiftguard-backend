@@ -942,8 +942,32 @@ module.exports = {
         },
       ];
       let stats = await Job.aggregate(pip);
+      console.log(stats, req.query.date)
+      let endDate = new Date(req.query.date);
+      if (req.user.type == "ADMIN") {
+        posted_by = req.query.org_id;
+      } else {
+        posted_by = req.user.id;
+      }
+      let cond = {
+        posted_by,
+        startDate: {
+          $gte: new Date(req.query.date),
+          $lt: new Date(endDate.setDate(endDate.getDate() + 1)),
+        },
+      };
+      const job = await Job.find(cond)
+      const pendingJob = job.filter(f => f.applicant && f.applicant.length > 0)
+      const newData = [
+        {
+          ...stats[0],
+          totalJobs: job.length,
+          pendingJobs: pendingJob.length
+        }
+      ]
+      console.log(newData)
 
-      return response.ok(res, stats);
+      return response.ok(res, newData);
     } catch (error) {
       return response.error(res, error);
     }
